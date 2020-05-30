@@ -2,7 +2,10 @@ package com.pds.carking.dto;
 
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 public class EmployeeDTO {
+
 	
 	@NotBlank(message = "Name is required")
 	private String name;
@@ -10,6 +13,15 @@ public class EmployeeDTO {
 	private String username;
 	@NotBlank(message = "Password is required")
 	private String password;
+	@NotBlank(message = "CPF is required")
+	@CPF(message = "CPF invalid")
+	private String cpf;
+	
+	@NotBlank(message = "CellNumber is required")
+	private String cellNumber;
+	
+	@NotBlank(message = "Role is required")
+	private String role;
 	
 	public String getName() {
 		return name;
@@ -28,6 +40,24 @@ public class EmployeeDTO {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	public String getCellNumber() {
+		return cellNumber;
+	}
+	public void setCellNumber(String cellNumber) {
+		this.cellNumber = cellNumber;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	

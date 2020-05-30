@@ -2,17 +2,33 @@ package com.pds.carking.model;
 
 import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+import com.pds.carking.interfaces.IPerson;
+import com.pds.carking.model.abstracts.AUser;
 
 @Entity
-public class Employee {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "role", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue(value = "")
+public abstract class Employee extends AUser implements IPerson{
 	
 	@Id
 	private UUID id;
-	private String username;
-	private String password;
+	
 	private String name;
+	private String cellNumber;
+	private String cpf;
+	
+	@Column(insertable = false, updatable = false)
+	private String role;
 	protected boolean isActive;
 	
 	public Employee() {
@@ -27,22 +43,41 @@ public class Employee {
 	public void setId(UUID id) {
 		this.id = id;
 	}
-	public String getUsername() {
-		return username;
+	
+	public String getRole () {
+		return this.role;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setRole (String role) {
+		this.role = role;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+
+	@Override
 	public String getName() {
-		return name;
+		return this.name;
 	}
+
+	@Override
+	public String getCellNumber() {
+		return this.cellNumber;
+	}
+
+	@Override
+	public String getCPF() {
+		return this.cpf;
+	}
+
+	@Override
 	public void setName(String name) {
-		this.name = name.toUpperCase();
+		this.name = name;
+	}
+
+	@Override
+	public void setCellNumber(String cellNumber) {
+		this.cellNumber = cellNumber;
+	}
+
+	@Override
+	public void setCPF(String cpf) {
+		this.cpf = cpf;
 	}
 }

@@ -13,11 +13,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.pds.carking.exception.NotFoundException;
 import com.pds.carking.exception.handlers.AccessDeniedExceptionHandler;
 import com.pds.carking.model.Employee;
 import com.pds.carking.services.EmployeeService;
-
-import javassist.NotFoundException;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
@@ -28,33 +27,42 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 	@Autowired
 	private EmployeeService employeeService;
 
+	private final boolean REQUIRED_TOKEN = false;
+
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		final String requestTokenHeader = request.getHeader("Authorization");
-		String username = null;
 
-		if (requestTokenHeader != null) {
-			username = jwtTokenUtil.getUsernameFromToken(requestTokenHeader);
-		}
-		try {
-			if (username != null) {
-				if (jwtTokenUtil.validateToken(requestTokenHeader, username)) {
-					Employee employee = null;
+		if (REQUIRED_TOKEN) {
 
-					employee = employeeService.getEmployeeFromUsername(username);
+			final String requestTokenHeader = request.getHeader("Authorization");
+			String username = null;
 
-					if (employee != null) {
-						UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-								employee.getUsername(), employee.getPassword());
-						SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+			if (requestTokenHeader != null) {
+				username = jwtTokenUtil.getUsernameFromToken(requestTokenHeader);
+			}
+			try {
+				if (username != null) {
+					if (jwtTokenUtil.validateToken(requestTokenHeader, username)) {
+						Employee employee = null;
+
+						employee = employeeService.getEmployeeFromUsername(username);
+
+						if (employee != null) {
+							UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+									employee.getUsername(), employee.getPassword());
+							SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+						}
 					}
 				}
+
+				filterChain.doFilter(request, response);
+			} catch (NotFoundException e) {
+				new AccessDeniedExceptionHandler(response, e.getMessage());
 			}
 
+		} else {
 			filterChain.doFilter(request, response);
-		} catch (NotFoundException e) {
-			new AccessDeniedExceptionHandler(response, e.getMessage());
 		}
 
 	}

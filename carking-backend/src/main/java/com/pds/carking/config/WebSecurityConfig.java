@@ -20,12 +20,11 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.pds.carking.exception.InvalidCredentialsException;
+import com.pds.carking.exception.NotFoundException;
 import com.pds.carking.exception.handlers.InvalidCredentialsExceptionHandler;
 import com.pds.carking.model.Employee;
 import com.pds.carking.security.JwtRequestFilter;
 import com.pds.carking.services.EmployeeService;
-
-import javassist.NotFoundException;
 
 @Configuration
 @EnableWebSecurity
@@ -81,13 +80,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
 		http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, "/login").permitAll()
 				.antMatchers("/swagger-ui.html", "/v2/api-docs", "/swagger-resources/**", "/configuration/**",
-						"/webjars/**")
-				.permitAll().anyRequest().authenticated().and()
-				.exceptionHandling().authenticationEntryPoint(authenticationFailureHandler());
+						"/webjars/**").permitAll();
+				//.anyRequest().authenticated()
+	//			.and().exceptionHandling().authenticationEntryPoint(authenticationFailureHandler());
 	//			.and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
 
-		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+		//http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 }

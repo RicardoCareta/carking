@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.pds.carking.dto.EmployeeDTO;
 import com.pds.carking.services.EmployeeService;
 
-import javassist.NotFoundException;
-
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -30,7 +28,7 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 	
 	@PostMapping
-	public ResponseEntity<?> storeEmployee (@Valid @RequestBody EmployeeDTO employeeDTO, @RequestHeader("Authorization") String token) {
+	public ResponseEntity<?> storeEmployee (@Valid @RequestBody EmployeeDTO employeeDTO, @RequestHeader("Authorization") String token) throws Exception {
 		final String idEmployee = employeeService.storeEmployee(employeeDTO);
 		Map<String, String> idMapReturn = new HashMap<String, String>();
 		idMapReturn.put("id", idEmployee);
@@ -48,7 +46,7 @@ public class EmployeeController {
 	}
 	
 	@PatchMapping("/{employeeId}")
-	public ResponseEntity<?> updateEmployee (@Valid @RequestBody EmployeeDTO employeeDTO, @PathVariable String employeeId) throws NotFoundException {
+	public ResponseEntity<?> updateEmployee (@Valid @RequestBody EmployeeDTO employeeDTO, @PathVariable String employeeId) throws Exception {
 		return ResponseEntity.ok(employeeService.updateEmployee(employeeDTO, employeeId));
 	}
 }
