@@ -1,0 +1,9 @@
+svg.entrance path:nth-child(1),
+svg.entrance path:nth-child(3) {
+  fill: #43a047;
+}
+
+svg.takeoff path:nth-child(1),
+svg.takeoff path:nth-child(3) {
+  fill: #e53935;
+}

@@ -1,0 +1,140 @@
+#main-screen {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1;
+}
+
+#main-screen #menu input {
+  width: 20px;
+}
+
+#main-screen #menu {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  height: 100vh;
+  width: 240px;
+  margin-right: 35vh;
+}
+
+#main-screen #component {
+  display: flex;
+  flex: 4;
+  margin-top: 5vh;
+}
+
+#main-screen #component div:first {
+  width: 100vh;
+}
+
+#main-screen #menu .menuItem,
+#main-screen #menu .submenuItem {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+#main-screen #menu .menuItem:not(:first-child):hover,
+#main-screen #menu .submenuItem:hover {
+  background-color: rgba(255, 190, 72, 0.4);
+  transition: 100ms;
+}
+
+#main-screen #menu .submenuItem {
+  margin-top: 15px;
+  width: 100%;
+}
+
+#main-screen #menu .submenuItem #car-icon {
+  margin-left: 32px;
+}
+
+#main-screen #menu .menuItem:not(:first-child),
+#main-screen #menu .submenuItem {
+  cursor: pointer;
+}
+
+#main-screen #menu .menuItem #add-header {
+  display: flex;
+}
+
+#main-screen #menu #exit {
+  position: absolute;
+  bottom: 20px;
+  width: 240px;
+}
+
+#main-screen #menu #add {
+  flex-direction: column;
+  cursor: default;
+}
+
+#main-screen #menu .menuItem #parking-out-name {
+  font-size: 20px;
+}
+
+#main-screen #menu #add:hover {
+  background-color: black;
+}
+
+#main-screen #menu .menuItem .menu-icon {
+  margin-top: 2px;
+  margin-left: 15px;
+}
+
+#main-screen #menu .menuItem .menu-icon:not(:first-child),
+#main-screen #menu .submenuItem .submenu-icon {
+  display: flex;
+  align-items: center;
+}
+
+#main-screen #menu .menuItem .menu-name {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-left: 10px;
+
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+#main-screen #menu .submenuItem .submenu-name {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-left: 10px;
+
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+#main-screen #menu .submenuItem .submenu-icon {
+  margin-left: 32px;
+}
+
+#main-screen #menu .submenuItem .submenu-icon .markerIcon {
+  position: relative;
+  right: 3px;
+}
+
+#main-screen #menu .menuItem .menu-icon .markerIcon {
+  position: relative;
+  right: 3px;
+  top: -10px;
+}
+
+#main-screen #menu #user-line hr {
+  background-color: #ffbe48;
+  border: none;
+  height: 1px;
+  width: 200px;
+}

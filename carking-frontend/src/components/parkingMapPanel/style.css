@@ -1,0 +1,67 @@
+#parking {
+  background-image: url("https://i.imgur.com/kqLk8lv.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 50vh;
+  height: 60vh;
+}
+
+#parking .row-parking {
+  display: flex;
+}
+
+#parking .row-parking:nth-child(2) {
+  margin-top: 11%;
+}
+
+#parking .row-parking:nth-child(3) {
+  margin-top: 28%;
+}
+
+#parking .row-parking:nth-child(4) {
+  margin-top: 11%;
+}
+
+#parking .row-parking svg {
+  cursor: pointer;
+}
+
+#parking .row-parking .car-svg.selected path:nth-child(1),
+#parking .row-parking .car-svg.selected path:nth-child(3) {
+  fill: #ffbe48;
+}
+
+#parking .row-parking .car-svg.busy path:nth-child(1),
+#parking .row-parking .car-svg.busy path:nth-child(3) {
+  fill: #e53935;
+}
+
+#parking .row-parking .car-svg.empty path:nth-child(1),
+#parking .row-parking .car-svg.empty path:nth-child(3) {
+  fill: #43a047;
+}
+
+#parking.parking-out .row-parking .car-svg.busy:hover path:nth-child(1),
+#parking.parking-out .row-parking .car-svg.busy:hover path:nth-child(3) {
+  fill: #ffbe48;
+}
+
+#parking:not(.parking-out)
+  .row-parking
+  .car-svg:not(.busy):hover
+  path:nth-child(1),
+#parking:not(.parking-out)
+  .row-parking
+  .car-svg:not(.busy):hover
+  path:nth-child(3) {
+  fill: #ffbe48;
+}
+
+#parking .row-parking svg:nth-child(5) {
+  left: -0.6%;
+}
+
+#parking .row-parking svg:nth-child(6) {
+  left: -1.2%;
+}

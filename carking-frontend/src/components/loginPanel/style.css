@@ -1,0 +1,57 @@
+#login-panel {
+  display: flex;
+  text-align: center;
+  width: 90vh;
+  height: 70vh;
+  background-color: black;
+  opacity: 100% !important;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 40px;
+}
+
+#logo {
+  display: flex;
+  object-fit: contain;
+  width: 250px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+#login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+input,
+select {
+  display: flex;
+  font-family: "Montserrat", sans-serif;
+  text-align: center !important;
+  font-size: 18px;
+  width: 300px;
+  height: 45px;
+  margin-top: 15px;
+  border-radius: 7px;
+  border: none;
+  transition: 300ms;
+  text-align-last: center;
+}
+
+#btn-in {
+  display: block;
+  background: #ffbe48;
+  border-radius: 13px;
+  font-weight: 700;
+  width: 170px;
+  height: 70px;
+}
+
+#btn-in:active {
+  transform: scale(0.8);
+}

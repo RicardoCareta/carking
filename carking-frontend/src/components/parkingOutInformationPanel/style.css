@@ -1,0 +1,29 @@
+input:disabled {
+  background-color: #dcdcdc;
+}
+
+#parking-out-information-form .row-parking-out-information {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  justify-content: space-between;
+}
+
+#parking-out-information-form .row-parking-out-information input,
+#parking-out-information-form .row-parking-out-information select {
+  display: flex;
+  width: 48%;
+}
+
+input[type="button"]:disabled {
+  color: rgb(84, 84, 84);
+}
+
+#button-div-parking-out-information {
+  display: flex;
+  justify-content: center;
+}
+
+#button-div-parking-out-information #btn-in {
+  width: 190px;
+}

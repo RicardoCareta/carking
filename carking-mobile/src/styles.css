@@ -1,0 +1,20 @@
+.App {
+  background-color: #ffbe48;
+  font-family: "Montserrat", sans-serif !important;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  user-select: none;
+}
+
+p {
+  position: initial !important;
+  width: initial !important;
+  color: initial !important;
+}
+
+iframe {
+  display: none;
+}
