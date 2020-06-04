@@ -10,6 +10,7 @@ public class CustomerDTO {
 	private String cellNumber;
 	@NotEmpty(message = "Client cpf is required")
 	private String cpf;
+	private String telephone;
 	
 	public String getName() {
 		return name;
@@ -28,5 +29,11 @@ public class CustomerDTO {
 	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	public String getTelephone() {
+		return telephone;
+	}
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 }

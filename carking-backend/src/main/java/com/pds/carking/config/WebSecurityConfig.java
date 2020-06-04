@@ -72,6 +72,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			}
 		});
 	}
+	
+	
 
 	@Bean
 	public AuthenticationEntryPoint authenticationFailureHandler() {
@@ -88,6 +90,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	//			.and().exceptionHandling().authenticationEntryPoint(authenticationFailureHandler());
 	//			.and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
 
+		http.headers().frameOptions().disable();
 		//http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 }

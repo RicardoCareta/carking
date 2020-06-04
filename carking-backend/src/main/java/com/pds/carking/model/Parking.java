@@ -42,6 +42,9 @@ public class Parking {
 	@ManyToOne
 	private Employee driver;
 	
+	@ManyToOne
+	private Employee driverTakeoff;
+	
 	@Enumerated(EnumType.STRING)
 	private ParkingStatus status;
 	
@@ -114,5 +117,21 @@ public class Parking {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public Employee getDriverTakeoff() {
+		return driverTakeoff;
+	}
+
+	public void setDriverTakeoff(Employee driverTakeoff) {
+		this.driverTakeoff = driverTakeoff;
+	}
+
+	public ParkingStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(ParkingStatus status) {
+		this.status = status;
 	}	
 }

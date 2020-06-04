@@ -5,8 +5,11 @@ import java.util.Locale;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.github.javafaker.Faker;
+import com.pds.carking.util.faker.FakerExtras;
 
 @Configuration
 public class ApplicationConfig {
@@ -18,8 +21,7 @@ public class ApplicationConfig {
 	}
 	
 	@Bean
-	public Faker faker () {
-		Faker faker = new Faker(new Locale("pt-BR"));
-		return faker;
+	public FakerExtras faker () {
+		return new FakerExtras(new Locale("pt-BR"));
 	}
 }

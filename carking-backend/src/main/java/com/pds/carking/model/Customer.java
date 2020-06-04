@@ -17,6 +17,7 @@ public class Customer implements IPerson{
 	private String name;
 	private String cellNumber;
 	private String CPF;
+	private String telephone;
 	
 	@OneToOne
 	private Vehicle vehicle;
@@ -68,6 +69,14 @@ public class Customer implements IPerson{
 	@Override
 	public void setCPF(String CPF) {
 		this.CPF = CPF;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 	
 }

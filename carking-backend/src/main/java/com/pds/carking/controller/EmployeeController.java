@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pds.carking.dto.EmployeeDTO;
+import com.pds.carking.dto.EmployeeUpdateDTO;
 import com.pds.carking.services.EmployeeService;
 
 @Controller
@@ -45,8 +46,13 @@ public class EmployeeController {
 		return ResponseEntity.ok(employeeService.getAllEmployee());
 	}
 	
-	@PatchMapping("/{employeeId}")
-	public ResponseEntity<?> updateEmployee (@Valid @RequestBody EmployeeDTO employeeDTO, @PathVariable String employeeId) throws Exception {
-		return ResponseEntity.ok(employeeService.updateEmployee(employeeDTO, employeeId));
+	@GetMapping("/info")
+	public ResponseEntity<?> getEmployeeToken (@RequestHeader ("Authorization") String token) throws Exception{
+		return ResponseEntity.ok(employeeService.getEmployeeToken(token));
+	}
+	
+	@PatchMapping()
+	public ResponseEntity<?> updateEmployee (@Valid @RequestBody EmployeeUpdateDTO employeeDTO, @RequestHeader ("Authorization") String token) throws Exception {
+		return ResponseEntity.ok(employeeService.updateEmployee(employeeDTO, token));
 	}
 }

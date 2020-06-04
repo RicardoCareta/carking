@@ -10,9 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pds.carking.dto.ParkingDTO;
 import com.pds.carking.services.ParkingService;
@@ -35,5 +38,20 @@ public class ParkingController {
 	@GetMapping
 	public ResponseEntity<?> getParking () {
 		return ResponseEntity.ok(parkingService.getParking());
+	}
+	
+	@GetMapping("/map")
+	public ResponseEntity<?> getParkingMap() {
+		return ResponseEntity.ok(parkingService.getParkingMapped());
+	}
+	
+	@GetMapping("/filter")
+	public ResponseEntity<?> getParkingByFilter (@RequestParam(name = "parkingPlace") String parkingPlace) throws Exception{
+		return ResponseEntity.ok(parkingService.getParkingByFilter(parkingPlace));
+	}
+	
+	@PatchMapping("/{parkingId}")
+	public ResponseEntity<?> takeOffVehicleParking (@PathVariable String parkingId) throws Exception{
+		return ResponseEntity.ok(parkingService.takeOffVehicleParking(parkingId));
 	}
 }
