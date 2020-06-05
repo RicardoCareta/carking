@@ -10,6 +10,8 @@ public class LoginDTO {
 	@NotBlank(message="Password is required")
 	private String password;
 	
+	private String access;
+	
 	public String getLogin() {
 		return login;
 	}
@@ -21,5 +23,11 @@ public class LoginDTO {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getAccess() {
+		return access;
+	}
+	public void setAccess(String access) {
+		this.access = access;
 	}
 }

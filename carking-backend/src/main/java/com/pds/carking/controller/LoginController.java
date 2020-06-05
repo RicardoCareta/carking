@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pds.carking.dto.LoginDTO;
-import com.pds.carking.dto.LoginDTOResponse;
-import com.pds.carking.security.JwtTokenUtil;
+import com.pds.carking.services.EmployeeService;
 
 @Controller
 @RequestMapping("/login")
@@ -22,13 +21,12 @@ public class LoginController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	@Autowired
-	private JwtTokenUtil jwtTokenUtil;
+	private EmployeeService employeeService;
 	
 	@PostMapping
-	public ResponseEntity<?> loginUser (@Valid @RequestBody LoginDTO loginDTO) {
+	public ResponseEntity<?> loginUser (@Valid @RequestBody LoginDTO loginDTO) throws Exception{
 		authenticate(loginDTO.getLogin(), loginDTO.getPassword());
-		final String token = jwtTokenUtil.generateToken(loginDTO.getLogin());
-		return ResponseEntity.ok(new LoginDTOResponse(token));
+		return ResponseEntity.ok(employeeService.getLoginDTO(loginDTO.getLogin(), loginDTO.getAccess()));
 	}
 	
 	private void authenticate (String username, String password) {

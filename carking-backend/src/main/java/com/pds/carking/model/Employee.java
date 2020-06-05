@@ -13,6 +13,7 @@ import javax.persistence.InheritanceType;
 
 import com.pds.carking.interfaces.IPerson;
 import com.pds.carking.model.abstracts.AUser;
+import com.pds.carking.model.enums.SystemAccesses;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -80,4 +81,6 @@ public abstract class Employee extends AUser implements IPerson{
 	public void setCPF(String cpf) {
 		this.cpf = cpf;
 	}
+	
+	public abstract SystemAccesses getSystemAccess ();
 }

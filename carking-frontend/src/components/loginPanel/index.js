@@ -13,8 +13,12 @@ function LoginPanel() {
     //history.push("/main");
 
     const result = await login(username, password);
-    if (result) {
-      history.push("/main");
+    if (result.access && result !== -1) {
+      history.push("/main", {
+        role: result.role
+      });
+    } else if (result === -1) {
+      alert("Usuário não possui acesso");
     } else {
       alert("Usuário e senha estão incorretos");
     }

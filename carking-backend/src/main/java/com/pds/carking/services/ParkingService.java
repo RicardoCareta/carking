@@ -207,7 +207,7 @@ public class ParkingService {
 		if (!opEmployee.isPresent()) {
 			throw new NotFoundException("Employee " + role + " not found");
 		}
-		if (!opEmployee.get().getRole().equals(role)) {
+		if (!opEmployee.get().getRole().equals(role) && !opEmployee.get().getRole().equals("manager")) {
 			throw new NotFoundException("Employee " + role + " not found");
 		}
 		return true;

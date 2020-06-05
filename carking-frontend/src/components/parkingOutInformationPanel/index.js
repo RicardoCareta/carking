@@ -20,7 +20,7 @@ export default function ParkingOutInformationPanel({
     if (result) {
       alert(
         "Veículo adicionado na fila para retirar.\nO funcionário " +
-          result.name +
+          result.driver.name +
           " trará o veículo."
       );
 

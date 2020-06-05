@@ -56,6 +56,7 @@ export default function EntranceParkings() {
           plate={entrance.vehicle.plate}
           color={entrance.vehicle.color}
           name={entrance.customerDTO.name}
+          parkingPlace={entrance.parkingPlace}
         />
       ))}
     </div>

@@ -3,9 +3,11 @@ package com.pds.carking.dto;
 public class LoginDTOResponse {
 
 	private String token;
-
-	public LoginDTOResponse(String token) {
+	private String role;
+	
+	public LoginDTOResponse(String token, String role) {
 		this.token = token;
+		this.role = role;
 	}
 	
 	public String getToken() {
@@ -14,5 +16,13 @@ public class LoginDTOResponse {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 }

@@ -12,8 +12,10 @@ export default function Login() {
 
   const loginClickHandler = async () => {
     const result = await login(username, password);
-    if (result) {
+    if (result && result !== -1) {
       history.push("/main");
+    } else if (result === -1) {
+      alert("Usuário não possui acesso");
     } else {
       alert("Usuário informado é inválido");
     }
@@ -56,7 +58,7 @@ export default function Login() {
             />
           </form>
         </div>
-        <p>©Pastelaria de Software | 2020</p>
+        <p className="footer">©Pastelaria de Software | 2020</p>
       </section>
     </main>
   );

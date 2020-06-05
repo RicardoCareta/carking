@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pds.carking.dto.EmployeeDTO;
+import com.pds.carking.dto.LoginDTOResponse;
 import com.pds.carking.dto.abstracts.EmployeeBaseDTO;
 import com.pds.carking.exception.InvalidInputDataException;
 import com.pds.carking.exception.NotFoundException;
@@ -132,15 +133,18 @@ public class EmployeeService {
 		}
 		return mapEmployeeDTO;
 	}
-
-	/*private Employee getEmployeeById(String employeeId) throws NotFoundException {
-		Optional<Employee> optEmployee = employeeRepository.findById(UUID.fromString(employeeId));
-		if (optEmployee.isPresent()) {
-			return optEmployee.get();
+	
+	public LoginDTOResponse getLoginDTO (String username, String access) throws NotFoundException, InvalidInputDataException {
+		final Employee employee = getEmployeeFromUsername(username);
+		final String token = jwtTokenUtil.generateToken(username);
+		
+		if (!employee.getSystemAccess().getAccess().equals(access)) {
+			throw new InvalidInputDataException("Employee do not have access for this platform");
 		}
-		throw new NotFoundException("Employee not found");
-	}*/
-
+		
+		return new LoginDTOResponse(token, employee.getRole());
+	}
+	
 	public List<EmployeeDTO> getNoBusyDrivers() {
 		return Arrays.asList(modelMapper.map(driverRepository.findAll(), EmployeeDTO[].class));
 	}

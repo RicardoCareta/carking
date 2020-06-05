@@ -104,19 +104,20 @@ export default function MainScreen() {
           </div>
 
           <div id="add-body">
-            <div
-              className="submenuItem"
-              onClick={navigateToRegisterFuncionario}
-            >
-              <div id="employee-icon" className="submenu-icon">
-                {currentComponent === 1 && <MarkerIcon />} <CogIcon />
-              </div>
+            {history.location.state.role === "manager" && (
+              <div
+                className="submenuItem"
+                onClick={navigateToRegisterFuncionario}
+              >
+                <div id="employee-icon" className="submenu-icon">
+                  {currentComponent === 1 && <MarkerIcon />} <CogIcon />
+                </div>
 
-              <div id="employee-name" className="submenu-name">
-                <span>Funcionário</span>
+                <div id="employee-name" className="submenu-name">
+                  <span>Funcionário</span>
+                </div>
               </div>
-            </div>
-
+            )}
             <div className="submenuItem" onClick={navigateToRegisterParking}>
               <div id="car-icon" className="submenu-icon">
                 {currentComponent === 2 && <MarkerIcon />}

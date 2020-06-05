@@ -56,6 +56,7 @@ export default function TakeOffParkings() {
           plate={takeoff.vehicle.plate}
           color={takeoff.vehicle.color}
           name={takeoff.customerDTO.name}
+          parkingPlace={takeoff.parkingPlace}
         />
       ))}
     </div>

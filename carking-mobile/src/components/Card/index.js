@@ -10,7 +10,8 @@ export default function Card({
   plate,
   color,
   name,
-  callBackClick
+  callBackClick,
+  parkingPlace
 }) {
   return (
     <div id="card" onClick={callBackClick}>
@@ -34,11 +35,11 @@ export default function Card({
 
       <div id="card-infos">
         <p class="ticket-infos ticket-title">
-          {brand} - {model}
+          {brand} - {model} - {color}
         </p>
         <hr class="line" />
         <p class="ticket-infos">
-          {plate} - {color}
+          <span>Vaga:</span> {parkingPlace} | {plate}
         </p>
         <p class="ticket-infos">
           <span class="vality">Dono:</span> {name && name.split(" ")[0]}
